@@ -9,7 +9,10 @@ class User
 
   def initialize(name)
     @name = name
-    @wallet = Wallet.new(self) # UserインスタンスまたはUserを継承したクラスのインスタンスは生成されると、自身をオーナーとするウォレットを持ちます。
+
+    # binding.irb
+    # UserインスタンスまたはUserを継承したクラスのインスタンスは生成されると、自身をオーナーとするウォレットを持つ。
+    @wallet = Wallet.new(self)
   end
 
 end

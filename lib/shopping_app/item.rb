@@ -1,4 +1,7 @@
+require_relative "./ownable" #現在のディレクトリからのパス
+
 class Item
+  include  Ownable #
   attr_reader :number, :name, :price
 
   @@instances = []
@@ -7,7 +10,7 @@ class Item
     @number = number
     @name = name
     @price = price
-    self.owner = owner
+    self.owner = owner#owner =はselfがついているのでセッター
 
     # Itemインスタンスの生成時、そのItemインスタンス(self)は、@@insntancesというクラス変数に格納されます。
     @@instances << self

@@ -8,11 +8,14 @@ module ItemManager
     Item.all.select{|item| item.owner == self }
   end
 
+  #在庫から商品を取得
   def pick_items(number, quantity) # numberと対応した自身の所有するItemインスタンスを指定されたquantitiy分返します。
+    #
     items = stock.find{|stock| stock[:label][:number] == number }&.dig(:items)
     return if items.nil? || items.size < quantity
     items.slice(0, quantity)
   end
+
 
   def items_list # 自身の所有するItemインスタンスの在庫状況を、["番号", "商品名", "金額", "数量"]という列でテーブル形式にして出力します。
     kosi = Kosi::Table.new({header: %w{商品番号 商品名 金額 数量}}) # Gemgileに"kosi"のURLを記載

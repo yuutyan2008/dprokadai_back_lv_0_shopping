@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Ruby Program",
+            "type": "rdbg",
+            "request": "launch",
+            "script": "${workspaceRoot}/lib/shopping_app.rb",  // 実行するRubyスクリプトのパスを指定
+            "args": [],  // 必要なら引数を指定
+            "useBundler": false,  // Bundlerを使用する場合はtrueに設定
+            "cwd": "${workspaceRoot}",  // カレントディレクトリ
+            "console": "integratedTerminal"  // 追加: 統合ターミナルで実行するよう指定
+        }
+    ]
+}

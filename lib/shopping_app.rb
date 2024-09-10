@@ -2,8 +2,9 @@ require_relative "shopping_app/seller"
 require_relative "shopping_app/item"
 require_relative "shopping_app/customer"
 
-seller = Seller.new("DICストア")
-10.times{ Item.new(1, "CPU", 40830, seller) }
+
+seller = Seller.new("DICストア")#引数DICストはsellerクラスの親のuserクラスのインスタンス変数に代入される
+10.times{ Item.new(1, "CPU", 40830, seller) }#Itemクラスの引数をインスタンス変数に代入
 10.times{ Item.new(2, "メモリー", 13880, seller) }
 10.times{ Item.new(3, "マザーボード", 28980, seller) }
 10.times{ Item.new(4, "電源ユニット", 8980, seller) }
@@ -17,9 +18,15 @@ seller = Seller.new("DICストア")
 puts "🤖 あなたの名前を教えてください"
 customer = Customer.new(gets.chomp)
 
-puts "🏧 ウォレットにチャージする金額を入力にしてください"
-customer.wallet.deposit(gets.chomp.to_i)
+puts customer.name
+# customer = Customer.new("mofu")
 
+puts "🏧 ウォレットにチャージする金額を入力にしてください"
+customer.wallet.deposit(gets.chomp.to_i)#walletはuserクラスのインスタンス変数@walletであり、クラスWalletでもあり、
+# customer.wallet.deposit("1000000")
+#Walletクラスのdepositメソッドを呼び出す
+
+# binding.irb
 puts "🛍️ ショッピングを開始します"
 end_shopping = false
 while !end_shopping do
@@ -28,9 +35,11 @@ while !end_shopping do
 
   puts "️️⛏ 商品番号を入力してください"
   number = gets.to_i
+  # number = 3
 
   puts "⛏ 商品数量を入力してください"
   quantity = gets.to_i
+  # quantity = 4
 
   items = seller.pick_items(number, quantity)
 
@@ -42,10 +51,12 @@ while !end_shopping do
 
   puts "😭 買い物を終了しますか？(yes/no)"
   end_shopping = gets.chomp == "yes"
+  # end_shopping = true
 end
 
 puts "💸 購入を確定しますか？(yes/no)"
 customer.cart.check_out if gets.chomp == "yes"
+# customer.cart.check_out 
 
 puts "୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈結果┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧"
 puts "️🛍️ ️#{customer.name}の所有物"
