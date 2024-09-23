@@ -45,7 +45,7 @@ class Cart < Wallet #Walletクラスを継承
       
       #ownerオブジェクトのwalletインスタンスのwithdrawメソッドを呼ぶ
       #
-      owner.wallet.withdraw(item.price) #購入商品の値段を、オーナー(customer)の財布から引く
+      owner.wallet.withdraw(item.price) #オーナー(customer)の財布から購入商品の値段を引く
       #オーナー(customer)の財布からsellerの財布に購入商品の値段を増やす
       item.owner.wallet.deposit(item.price)#残高を追加する
 
