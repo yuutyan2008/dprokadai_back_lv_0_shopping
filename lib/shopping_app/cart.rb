@@ -1,8 +1,8 @@
 require_relative "item_manager"
 require_relative "./ownable" #現在のディレクトリからのパス
-require_relative "./wallet" #現在のディレクトリからのパス
+require_relative "./wallet" #walletクラスをcartクラス内で使用
 
-class Cart < Wallet #Walletクラスを継承
+class Cart
   include ItemManager
   include  Ownable #
 
@@ -10,6 +10,8 @@ class Cart < Wallet #Walletクラスを継承
     self.owner = owner#cartのownerを引数で受取り、@ownerインスタンス変数にownerの値が設定される
     @items = []#カートのアイテムを格納するため、@itemsインスタンス変数を作成して初期化。
     # binding.irb
+    @wallet = Wallet.new(owner) # CartインスタンスがWalletインスタンスを持つ、Has-a関係を定義
+  # 
   end
 
   def items
