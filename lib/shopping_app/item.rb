@@ -10,7 +10,7 @@ class Item
     @number = number
     @name = name
     @price = price
-    self.owner = owner#owner =はselfがついているのでセッター
+    self.owner = owner #owner =はselfがついているのでセッター
 
     # Itemインスタンスの生成時、そのItemインスタンス(self)は、@@insntancesというクラス変数に格納されます。
     @@instances << self

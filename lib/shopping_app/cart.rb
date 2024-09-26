@@ -33,32 +33,27 @@ class Cart
   #カートのチェックアウト処理
   def check_out
     # binding.irb 
-    return if owner.wallet.balance < total_amount
-  # ## 要件
-  #   - カートの中身（Cart#items）のすべてのアイテムの購入金額が、カートのオーナーのウォレットからアイテムのオーナーのウォレットに移されること。
-    # item.owner.wallet += self.owner.wallet
-  #   - カートの中身（Cart#items）のすべてのアイテムのオーナー権限が、カートのオーナーに移されること。
-  
+    return if owner.wallet.balance < total_amount  
 
-  #   - カートの中身（Cart#items）が空になること。
-  #   
-  #
+#   - カートの中身（Cart#items）のすべてのアイテムの購入金額が、カートのオーナーのウォレットからアイテムのオーナーのウォレットに移されること。
     items.each do |item|#itemsメソッドを呼び出して@items配列を取得し、その配列に対してeachメソッドを適用
       
       #ownerオブジェクトのwalletインスタンスのwithdrawメソッドを呼ぶ
-      #
-      owner.wallet.withdraw(item.price) #オーナー(customer)の財布から購入商品の値段を引く
-      #オーナー(customer)の財布からsellerの財布に購入商品の値段を増やす
+      owner.wallet.withdraw(item.price) #オーナー(customer)の財布から購入金額を引き出す
+      #オーナー(customer)の財布からsellerの財布に購入金額を預ける
       item.owner.wallet.deposit(item.price)#残高を追加する
 
-      #所有者をsellerからオーナー(customer)にする
+#   - カートの中身（Cart#items）のすべてのアイテムのオーナー権限が、カートのオーナーに移されること。
       # binding.irb 
+      #所有者をsellerからオーナー(customer)にする
       item.owner= owner
       
     end
   
-    # binding.irb
+  # カートの中身（Cart#items）が空になること。
       @items = []
+
+
   # ## ヒント
   #   - カートのオーナーのウォレット ==> self.owner.wallet
   #   - アイテムのオーナーのウォレット ==> item.owner.wallet
